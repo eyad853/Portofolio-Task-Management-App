@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, Fragment } from 'react'
-import ViewModal from '../../components/Modals/viewModal';
+import ViewModal from '../../components/Modals/ViewModal';
 import NotesModal from '../../components/Modals/NotesModal';
 // Removed unused imports: ColumnsModal, CartsModal
 import axios from 'axios'
