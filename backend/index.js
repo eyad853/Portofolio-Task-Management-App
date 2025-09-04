@@ -20,7 +20,7 @@ const app = express()
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.vercelDomain,
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
@@ -31,16 +31,9 @@ app.set('io' , io)
 
 // Make sure uploads directory exists - modern approach
 const uploadsDir = path.join(process.cwd(), "backend", "uploads");
-try {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-} catch (err) {
-  if (err.code !== 'EEXIST') {
-    console.error(`Error creating uploads directory: ${err.message}`);
-  }
-}
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: process.env.vercelDomain,
   credentials: true
 }));
 
@@ -131,3 +124,5 @@ server.listen(PORT , ()=>{
     console.log("server started");
     
 })
+
+console.log(process.cwd());
