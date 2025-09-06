@@ -80,7 +80,7 @@ const UpdateTodoModal = ({
         try {
           setTasks(prevTasks =>prevTasks.map(task =>  task._id === todoId ? { ...task, ...updatedFields } : task));
           setIsUpdateTodoModal(false)
-          const response = await axios.patch(`http://localhost:8000/updateItem/${todoPage._id}/${todoId}`,updatedFields );
+          const response = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/updateItem/${todoPage._id}/${todoId}`,updatedFields );
             if(response){
               setEditedName(name||'')
               setEditedDescription(discription||"")

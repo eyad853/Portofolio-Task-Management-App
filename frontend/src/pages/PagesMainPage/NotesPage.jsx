@@ -166,7 +166,7 @@ const NotesPage = ({ pages, darkMode, isSideBarOpen, selectedPageId }) => {
 
     // notesPage is guaranteed to be defined here due to the early return above
     try {
-      const response = await axios.get(`http://localhost:8000/getSpecificPage/${notesPage._id}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getSpecificPage/${notesPage._id}`);
       if (response.data && response.data.page && response.data.page.content) {
         setNotes(response.data.page.content.notes || []);
         setError(null);
@@ -183,7 +183,7 @@ const NotesPage = ({ pages, darkMode, isSideBarOpen, selectedPageId }) => {
     if (!notesPage) return; // This check is still good to have, though less likely to be hit now
 
     try {
-      const response = await axios.put(`http://localhost:8000/updateNotesOrders/${notesPage._id}`, {
+      const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/updateNotesOrders/${notesPage._id}`, {
         notes: updatedNotes
       });
       if (response) {
@@ -206,7 +206,7 @@ const NotesPage = ({ pages, darkMode, isSideBarOpen, selectedPageId }) => {
 
     try {
       setNotes(notes.filter(note => note._id !== noteId))
-      await axios.delete(`http://localhost:8000/deleteItem/${notesPage._id}/${noteId}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/deleteItem/${notesPage._id}/${noteId}`);
     } catch (error) {
       console.error("Failed to delete note:", error);
       setError("Failed to delete note. Please try again.");

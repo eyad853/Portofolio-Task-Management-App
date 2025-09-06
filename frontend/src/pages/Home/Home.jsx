@@ -27,7 +27,7 @@ const Home = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedPageId, setSelectedPageId] = useState(null);
 
-  const socket = io('http://localhost:8000', {
+  const socket = io(import.meta.env.VITE_BACKEND_URL, {
     transports: ['websocket'],
     withCredentials: true
   });
@@ -51,7 +51,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/user', { withCredentials: true })
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/user`, { withCredentials: true })
       .then(response => {
         if (!response.data.error) {
           setUser(response.data.user);
@@ -65,7 +65,7 @@ const Home = () => {
 
   const fetchPages = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/getPages", { withCredentials: true });
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getPages`, { withCredentials: true });
       if (res) {
         setPages(res.data.pages);
       }

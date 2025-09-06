@@ -20,7 +20,7 @@ const DashBoard = ({ darkMode, user }) => {
   const [lastTodos, setLastTodos] = useState([]);
   const [loading, setLoading] = useState(false)
 
-  const API_BASE_URL = 'http://localhost:8000'; // Adjust this based on your server's port
+  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL; // Adjust this based on your server's port
 
   const fetchData = async (endpoint, setDataState) => {
     try {

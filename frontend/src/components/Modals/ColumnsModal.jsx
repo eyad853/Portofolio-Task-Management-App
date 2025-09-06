@@ -55,7 +55,7 @@ const ColumnsModal = ({setColumns, isColumnsModalOpen, selectedColumn , setSelec
             setColumns(prev=>prev.map(col=>col._id===columnId?{...col , ...updatedFields}:col))
             setIsColumnsModalOpen(false)
             const response = await axios.patch(
-                `http://localhost:8000/updateColumnSettings/${kanbanPage._id}/${columnId}`,
+                `${import.meta.env.VITE_BACKEND_URL}/updateColumnSettings/${kanbanPage._id}/${columnId}`,
                 updatedFields
             );
                 setSelectedColumn(null)
@@ -80,7 +80,7 @@ const ColumnsModal = ({setColumns, isColumnsModalOpen, selectedColumn , setSelec
             setIsColumnsModalOpen(false);
             setName('');
             setSelectedColor('#000000');
-            const response = await axios.put(`http://localhost:8000/updatePage/${kanbanPage._id}`, {
+            const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/updatePage/${kanbanPage._id}`, {
                 column
             });
         } catch (error) {

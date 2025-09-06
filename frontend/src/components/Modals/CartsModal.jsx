@@ -29,7 +29,7 @@ const CartsModal = ({setColumns,pages,isCartsModalOpen,selectedCard , darkMode ,
         setDiscription("")
         setPriority("")
         const response = await axios.post(
-          `http://localhost:8000/addCard/${kanbanPage._id}/${columnId}`, 
+          `${import.meta.env.VITE_BACKEND_URL}/addCard/${kanbanPage._id}/${columnId}`, 
           { card }  // Send as { card: card }
         );
         

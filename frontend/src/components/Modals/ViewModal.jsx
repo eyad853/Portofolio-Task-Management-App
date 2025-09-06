@@ -34,7 +34,7 @@ const ViewModal = ({setNotes,viewNote,notesPage, setViewNote, darkMode, selected
     
     setLoading(true);
     try {
-      await axios.put(`http://localhost:8000/updateItem/${notesPage._id}/${selectedNote._id}`, {
+      await axios.put(`${import.meta.env.VITE_BACKEND_URL}/updateItem/${notesPage._id}/${selectedNote._id}`, {
         title: editedTitle,
         content: editedContent,
         category: editedCategory
@@ -85,7 +85,7 @@ const ViewModal = ({setNotes,viewNote,notesPage, setViewNote, darkMode, selected
       setNotes(prev=>prev.map(note=>note._id===noteId?{...note , ...updatedFields} :note))
       setViewNote(false);
       const response = await axios.patch(
-        `http://localhost:8000/updateItem/${notesPage._id}/${noteId}`, updatedFields);
+        `${import.meta.env.VITE_BACKEND_URL}/updateItem/${notesPage._id}/${noteId}`, updatedFields);
   
       if (response) {
         setIsEditing(false);

@@ -40,7 +40,7 @@ const PagesModal = ({
       setType("")
       setIcon("")
       setColor("")
-      const response = await axios.post("http://localhost:8000/createPage", newPage , {withCredentials:true})
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/createPage`, newPage , {withCredentials:true})
   
       const realPage = response.data.newPage;
       setPages(prev =>prev.map(p => p._id === tempId ? realPage : p));

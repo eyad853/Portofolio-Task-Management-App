@@ -63,7 +63,7 @@ const TodosModal = ({
         setDiscription("");
         setEstimation("");
         setPriority("");
-        const response =await axios.put(`http://localhost:8000/updatePage/${todoPage._id}`, {
+        const response =await axios.put(`${import.meta.env.VITE_BACKEND_URL}/updatePage/${todoPage._id}`, {
           task
         })
       } catch (error) {

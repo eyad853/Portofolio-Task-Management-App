@@ -58,7 +58,7 @@ const TodoPage = ({
     const fetchTodos = async () => {
         try {
             setLoading(true);
-            const response = await axios.get(`http://localhost:8000/getSpecificPage/${todoPage._id}`);
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getSpecificPage/${todoPage._id}`);
             if (response.data && response.data.page && response.data.page.content) {
                 const allTasks = response.data.page.content.tasks || [];
 
@@ -99,7 +99,7 @@ const TodoPage = ({
     const deleteTodo = async (todoId) => {
         try {
             setTasks(tasks.filter(task => task._id !== todoId));
-            const response = await axios.delete(`http://localhost:8000/deleteItem/${todoPage._id}/${todoId}`);
+            const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/deleteItem/${todoPage._id}/${todoId}`);
         } catch (error) {
             console.error("Failed to delete todo:", error);
         }
@@ -155,7 +155,7 @@ const TodoPage = ({
         setOnProgressTasks(updatedOnProgress);
 
         try {
-            await axios.patch(`http://localhost:8000/updateItem/${todoPage._id}/${todoId}`, {
+            await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/updateItem/${todoPage._id}/${todoId}`, {
                 onProgress: true,
                 done: false
             });
@@ -201,7 +201,7 @@ const TodoPage = ({
                 setTasks(prev => [...prev, { ...taskToMove, done: false, onProgress: false }]);
             }
 
-            const response = await axios.patch(`http://localhost:8000/updateItem/${todoPage._id}/${todoId}`, {
+            const response = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/updateItem/${todoPage._id}/${todoId}`, {
                 done: targetDoneState,
                 onProgress: false
             });

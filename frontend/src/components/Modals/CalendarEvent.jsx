@@ -62,7 +62,7 @@ const CalendarEvent = ({setEvents,AllEvents, isOpen, pages, fetchEvents, darkMod
     try {
       setEvents(prev=>[...prev , event])
       setIsOpen(false);
-      const response = await axios.put(`http://localhost:8000/updatePage/${calendarPage._id}`, {
+      const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/updatePage/${calendarPage._id}`, {
         event
       });
       if(response) {
@@ -90,7 +90,7 @@ const CalendarEvent = ({setEvents,AllEvents, isOpen, pages, fetchEvents, darkMod
 
     try {
       setEvents(prev=>prev.filter(e=>e._id!==eventId))
-      const response = await axios.delete(`http://localhost:8000/deleteItem/${calendarPage._id}/${eventId}`);
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/deleteItem/${calendarPage._id}/${eventId}`);
       if(response) {
         // If we're deleting the currently viewed event, go back to the list view
         if (detailEvent && detailEvent._id === eventId) {
@@ -142,7 +142,7 @@ const CalendarEvent = ({setEvents,AllEvents, isOpen, pages, fetchEvents, darkMod
 
     try {
       setEvents(prev => prev.map(e => e._id === eventId ? { ...e, ...updatedFields } : e));
-      const response = await axios.patch(`http://localhost:8000/updateItem/${calendarPage._id}/${eventId}`, updatedFields);
+      const response = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/updateItem/${calendarPage._id}/${eventId}`, updatedFields);
       if (response) {
         setIsEditing(false);
         setTitle("");

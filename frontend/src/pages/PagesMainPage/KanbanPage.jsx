@@ -213,7 +213,7 @@ const KanbanPage = ({isFriendsModalOpen, isSideBarOpen, darkMode, pages, setIsFr
   const fetchColumns = async() => {
     try {
       setLoading(true)
-      const response = await axios.get(`http://localhost:8000/getSpecificPage/${kanbanPage._id}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getSpecificPage/${kanbanPage._id}`);
       if (response.data && response.data.page && response.data.page.content.columns) {
         console.log(response.data.page.content.columns);
         setColumns(response.data.page.content.columns || []);
@@ -227,7 +227,7 @@ const KanbanPage = ({isFriendsModalOpen, isSideBarOpen, darkMode, pages, setIsFr
   const deleteColumn = async(columnId)=>{
     try{
       setColumns(prev=>prev.filter(column=>column._id!==columnId))
-      await axios.delete(`http://localhost:8000/deleteItem/${kanbanPage._id}/${columnId}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/deleteItem/${kanbanPage._id}/${columnId}`);
     }catch(error){
       console.log(error);
     }
@@ -259,7 +259,7 @@ const KanbanPage = ({isFriendsModalOpen, isSideBarOpen, darkMode, pages, setIsFr
   const saveColumnsToDatabase = async(updatedColumns) => {
     try {
       // Implement saving to your database
-      const response =await axios.put(`http://localhost:8000/updateColumnsOrders/${kanbanPage._id}`, {
+      const response =await axios.put(`${import.meta.env.VITE_BACKEND_URL}/updateColumnsOrders/${kanbanPage._id}`, {
         columns: updatedColumns
       });
       if(response){

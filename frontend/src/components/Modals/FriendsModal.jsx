@@ -14,7 +14,7 @@ const FriendsModal = ({todoPage,isFriendsModalOpen,user, darkMode, setIsFriendsM
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/getAllUsers")
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getAllUsers`)
                 const data = response.data
                 if (data) {
                     setUsers(data.users.filter(u=>u._id!==user._id));
@@ -54,7 +54,7 @@ const FriendsModal = ({todoPage,isFriendsModalOpen,user, darkMode, setIsFriendsM
             receiverIds:invitedUsersIds
         }
         try{
-            const response = await axios.post('http://localhost:8000/invite/sendInvites' , body , {withCredentials:true})
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/invite/sendInvites` , body , {withCredentials:true})
         }catch(err){
             console.log(err);
         }

@@ -53,7 +53,7 @@ const Calendar = ({ month, year, pages, darkMode, selectedPageId, setLoading }) 
 
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:8000/getSpecificPage/${calendarPage._id}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getSpecificPage/${calendarPage._id}`);
       if (response.data && response.data.page && response.data.page.content.events) {
         console.log(response.data.page.content.events);
         setEvents(response.data.page.content.events || []);

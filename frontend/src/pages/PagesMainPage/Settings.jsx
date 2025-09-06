@@ -35,7 +35,7 @@ const SettingsPage = ({ darkMode, setUser, user, setDarkMode }) => {
         formData.append('avatar', file);
 
         try {
-            const response = await axios.patch('http://localhost:8000/settings/updateUserInfo', formData, {
+            const response = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/settings/updateUserInfo`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -54,7 +54,7 @@ const SettingsPage = ({ darkMode, setUser, user, setDarkMode }) => {
         try {
             setUser(null);
             setDarkMode(false);
-            await axios.delete('http://localhost:8000/settings/deleteAccount', { withCredentials: true });
+            await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/settings/deleteAccount`, { withCredentials: true });
             showMessage('Account deleted successfully!');
             navigate('/signup')
         } catch (error) {
@@ -68,7 +68,7 @@ const SettingsPage = ({ darkMode, setUser, user, setDarkMode }) => {
         try {
             setUser(null);
             setDarkMode(false);
-            await axios.delete('http://localhost:8000/settings/logoutAccount', { withCredentials: true });
+            await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/settings/logoutAccount`, { withCredentials: true });
             showMessage('Logged out successfully!');
             navigate('/login')
         } catch (error) {
@@ -83,7 +83,7 @@ const SettingsPage = ({ darkMode, setUser, user, setDarkMode }) => {
         try {
             setDarkMode(prev => !prev);
             showMessage(`Dark mode ${newDarkModeState ? 'enabled' : 'disabled'}`);
-            await axios.patch('http://localhost:8000/settings/darkMode', { darkMode: newDarkModeState }, { withCredentials: true });
+            await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/settings/darkMode`, { darkMode: newDarkModeState }, { withCredentials: true });
         } catch (error) {
             console.error('Error updating dark mode:', error);
             showMessage(`Error updating dark mode: ${error.response?.data?.message || error.message}`);

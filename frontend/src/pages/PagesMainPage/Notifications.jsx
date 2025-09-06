@@ -81,7 +81,7 @@ const NotificationsPage = ({ socket }) => {
     setLoading(true);
     try {
       if (activeTab === 'received') {
-        const response = await fetch(`http://localhost:8000/invite/getReceivedInvites?status=${filter}`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/invite/getReceivedInvites?status=${filter}`, {
           credentials: 'include'
         });
         const data = await response.json();
@@ -89,7 +89,7 @@ const NotificationsPage = ({ socket }) => {
           setReceivedInvites(data.invites);
         }
       } else {
-        const response = await fetch(`http://localhost:8000/invite/getSentInvites?status=${filter}`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/invite/getSentInvites?status=${filter}`, {
           credentials: 'include'
         });
         const data = await response.json();
@@ -108,7 +108,7 @@ const NotificationsPage = ({ socket }) => {
     setProcessingInvites(prev => new Set(prev).add(inviteId));
     
     try {
-      const response = await fetch(`http://localhost:8000/invite/respondToInvite/${inviteId}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/invite/respondToInvite/${inviteId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ const NotificationsPage = ({ socket }) => {
     setProcessingInvites(prev => new Set(prev).add(inviteId));
     
     try {
-      const response = await fetch(`http://localhost:8000/invite/cancelInvite/${inviteId}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/invite/cancelInvite/${inviteId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

@@ -39,7 +39,7 @@ const NotesModal = ({
         try{
             setNotes(prev=>[...prev , note])
             setIsNotesModalOpen(false)
-            const response = await axios.put(`http://localhost:8000/updatePage/${notesPage._id}`, {
+            const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/updatePage/${notesPage._id}`, {
                 note
         })
         if(response){

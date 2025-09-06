@@ -67,7 +67,7 @@ const ViewCard = ({fetchColumns,column,setColumns, card, isOpen,kanbanPage, setI
       setIsOpen(false)
       setIsEditing(false)
       const response = await axios.patch(
-        `http://localhost:8000/updateItem/${kanbanPage._id}/${cardId}`,updatedFields );
+        `${import.meta.env.VITE_BACKEND_URL}/updateItem/${kanbanPage._id}/${cardId}`,updatedFields );
         if(response){
           setEditedTitle(card.title || '');
           setEditedDescription(card.description || '');

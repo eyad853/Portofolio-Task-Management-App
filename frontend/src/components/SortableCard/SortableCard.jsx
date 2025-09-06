@@ -63,7 +63,7 @@ export default function SortableCard({setColumns,selectedColumn,setSelectedColum
   const handleDeleteCard = async()=>{
     try{
       setColumns(prev =>prev.map(col => col._id === column._id?{ ...col, cards: col.cards.filter(c => c._id !== card._id) } : col));
-      const response = await axios.delete(`http://localhost:8000/deleteKanbanCard/${kanbanPage._id}/${column._id}/${card._id}`)
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/deleteKanbanCard/${kanbanPage._id}/${column._id}/${card._id}`)
     }catch(error){
       console.log(error);
     }

@@ -67,7 +67,7 @@ const Sidebar = ({
     const handleDeletePage = async (id) => {
         try {
             setPages(pages.filter(page => page._id !== id))
-            await axios.delete(`http://localhost:8000/deletePage/${id}`)
+            await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/deletePage/${id}`)
         } catch (error) {
             console.log(error)
         }
