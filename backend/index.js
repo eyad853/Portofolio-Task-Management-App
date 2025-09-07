@@ -1,8 +1,9 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import express from "express"
 import mongoose from "mongoose"
 import router from "./routes/routes.js"
 import cors from "cors"
-import dotenv from 'dotenv'
 import passport from "passport"
 import session from "express-session"
 import "./config/googlePassport.js"
@@ -15,12 +16,23 @@ import path from 'path';
 import { fileURLToPath } from "url"
 import User from "./schemas/UserSchema.js"
 import sharedsession from "express-socket.io-session"
-dotenv.config()
+
+console.log('data in index.js')
+console.log("frontendURL =", process.env.frontendURL);
+console.log("DB =", process.env.DB);
+console.log("SESSION_SECRET =", process.env.SESSION_SECRET);
+console.log("googleClientID =", process.env.googleClientID);
+console.log("googleClientSecret =", process.env.googleClientSecret);
+console.log("googleCallbackURL =", process.env.googleCallbackURL);
+console.log("githubClientID =", process.env.githubClientID);
+console.log("githubClientSecret =", process.env.githubClientSecret);
+console.log("githubCallbackURL =", process.env.githubCallbackURL);
+
 const app = express()
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: process.env.vercelDomain,
+    origin: process.env.frontendURL,
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
@@ -33,7 +45,7 @@ app.set('io' , io)
 const uploadsDir = path.join(process.cwd(), "backend", "uploads");
 
 app.use(cors({
-  origin: process.env.vercelDomain,
+  origin: process.env.frontendURL,
   credentials: true
 }));
 
