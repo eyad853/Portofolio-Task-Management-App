@@ -137,7 +137,7 @@ const Sidebar = ({
                             ) : (
                                 <div className={`
                                     w-full ${darkMode ? "bg-gray-950 " : ""} 
-                                    overflow-hidden flex items-center justify-center h-full
+                                    overflow-hidden flex items-end justify-center h-full
                                     text-2xl sm:text-3xl
                                 `}>
                                     <FaUser />
