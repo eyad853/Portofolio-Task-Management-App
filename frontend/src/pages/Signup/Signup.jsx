@@ -5,6 +5,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
 import Modal from 'react-modal'; // Ensure Modal is imported
+import axios from 'axios'
 
 Modal.setAppElement('#root'); // Set the root element for React-Modal
 
@@ -39,11 +40,31 @@ const Signup = () => {
         }
     };
 
-    // IMPORTANT: The form below will handle submission directly.
-    // The "uploadAvatar" function as it was defined, explicitly calling axios.post
-    // and e.preventDefault(), is removed or commented out.
-    // The form's `action` and `method` attributes, along with input `name` attributes,
-    // will send the data (including the file) to the backend.
+    const handleNormalSignup = async (e) => {
+        e.preventDefault();
+
+        try {
+            const formData = new FormData();
+            formData.append("firstname", firstname);
+            formData.append("lastname", lastname);
+            formData.append("email", email);
+            formData.append("password", password);
+            if (file) formData.append("avatar", file);
+        
+            const res = await axios.post(
+            `${import.meta.env.VITE_BACKEND_URL}/signup`,
+            formData,
+            { withCredentials: true }
+            );
+
+            if (!res.data.error) {
+                navigate("/home");
+            }
+        } catch (error) {
+            console.error("Signup failed:", error);
+            alert("Something went wrong");
+        } 
+};
 
     return (
         <div className='w-screen p-4 lg:p-10 text-white min-h-screen flex justify-center items-center'>
@@ -78,8 +99,7 @@ const Signup = () => {
                     {/* IMPORTANT: This form will submit directly to the backend.
                         The `encType` is crucial for file uploads. */}
                     <form
-                        action={`${import.meta.env.VITE_BACKEND_URL}/signup`} // Ensure /api prefix here
-                        method="POST"
+                        onSubmit={handleNormalSignup}
                         encType="multipart/form-data" // Crucial for file uploads
                         className='w-full flex flex-col lg:flex-row flex-1'
                         // No onSubmit handler that calls e.preventDefault()

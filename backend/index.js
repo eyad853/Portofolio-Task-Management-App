@@ -17,17 +17,6 @@ import { fileURLToPath } from "url"
 import User from "./schemas/UserSchema.js"
 import sharedsession from "express-socket.io-session"
 
-console.log('data in index.js')
-console.log("frontendURL =", process.env.frontendURL);
-console.log("DB =", process.env.DB);
-console.log("SESSION_SECRET =", process.env.SESSION_SECRET);
-console.log("googleClientID =", process.env.googleClientID);
-console.log("googleClientSecret =", process.env.googleClientSecret);
-console.log("googleCallbackURL =", process.env.googleCallbackURL);
-console.log("githubClientID =", process.env.githubClientID);
-console.log("githubClientSecret =", process.env.githubClientSecret);
-console.log("githubCallbackURL =", process.env.githubCallbackURL);
-
 const app = express()
 const server = http.createServer(app)
 const io = new Server(server, {
@@ -145,5 +134,3 @@ server.listen(PORT , ()=>{
     console.log("server started");
     
 })
-
-console.log(process.cwd());

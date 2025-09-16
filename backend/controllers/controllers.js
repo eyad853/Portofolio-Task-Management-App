@@ -42,16 +42,17 @@ export const normalSignUp = async (req, res) => {
         await newUser.save();
 
         // Log in the user right after signup using Passport's req.login
-        req.login(newUser, (err) => {
-            if (err) {
-                console.error("Login after signup failed:", err);
-                // If login fails, redirect to login page with a status
-                return res.redirect(`${process.env.frontendURL}/login?auth_status=signup_login_failed`);
-            }
-            console.log("User logged in after signup (server-side):", req.user?._id || 'User object not available');
-            // Redirect after successful login to ensure session cookie is properly set by browser
-            res.redirect(`${process.env.frontendURL}/home`); // Redirect to home page
-        });
+req.login(newUser, (err) => {
+  if (err) {
+    console.error("Login after signup failed:", err);
+    return res.status(500).json({ error: true, message: "Signup succeeded but login failed" });
+  }
+
+  console.log("User logged in after signup:", req.user?._id || 'User object not available');
+
+  // ❌ No response here → browser never gets cookie
+  return res.status(200).json({ error: false, message: "Signup successful" }); // ✅ Must return JSON
+});
     } catch (error) {
         console.error("Signup error:", error); // Log the actual error
         res.status(500).json({
@@ -122,16 +123,6 @@ export const normalLogin = async (req, res) => {
     }
 };
 
-console.log('data in controllers.js')
-console.log("frontendURL =", process.env.frontendURL);
-console.log("DB =", process.env.DB);
-console.log("SESSION_SECRET =", process.env.SESSION_SECRET);
-console.log("googleClientID =", process.env.googleClientID);
-console.log("googleClientSecret =", process.env.googleClientSecret);
-console.log("googleCallbackURL =", process.env.googleCallbackURL);
-console.log("githubClientID =", process.env.githubClientID);
-console.log("githubClientSecret =", process.env.githubClientSecret);
-console.log("githubCallbackURL =", process.env.githubCallbackURL);
 
 export const firstGoogleRoute = passport.authenticate("google" , {
     scope: ['profile', 'email']
