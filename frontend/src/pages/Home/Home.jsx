@@ -8,7 +8,7 @@ import TodosModal from '../../components/Modals/TodosModal';
 import FriendsModal from '../../components/Modals/FriendsModal';
 import { io } from 'socket.io-client';
 
-const Home = () => {
+const Home = ({trigger}) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(window.innerWidth >= 1024);
   const [content, setContent] = useState("Dashboard");
   const [route, setRoute] = useState("");
@@ -61,7 +61,7 @@ const Home = () => {
       .catch(error => {
         console.error('Error fetching user:', error);
       });
-  }, []);
+  }, [trigger]);
 
   const fetchPages = async () => {
     try {

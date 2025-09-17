@@ -7,12 +7,14 @@ import Modal from "react-modal"
 Modal.setAppElement('#root');
 
 const App = () => {
+  const [trigger , setTrigger]=useState(0)
+
   return (
     <Router >
       <Routes>
-        <Route path='/' element={<Signup />}/>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/home' element={<Home />}/>
+        <Route path='/' element={<Signup setTrigger={setTrigger}/>}/>
+        <Route path='/login' element={<Login setTrigger={setTrigger}/>}/>
+        <Route path='/home' element={<Home trigger={trigger}/>}/>
       </Routes>
     </Router>
   )

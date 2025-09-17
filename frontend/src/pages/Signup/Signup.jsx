@@ -9,7 +9,7 @@ import axios from 'axios'
 
 Modal.setAppElement('#root'); // Set the root element for React-Modal
 
-const Signup = () => {
+const Signup = ({setTrigger}) => {
     const navigate = useNavigate();
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
@@ -58,6 +58,7 @@ const Signup = () => {
             );
 
             if (!res.data.error) {
+                setTrigger(prev=>prev+1)
                 navigate("/home");
             }
         } catch (error) {
