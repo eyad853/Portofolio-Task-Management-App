@@ -31,7 +31,9 @@ const io = new Server(server, {
 app.set('io' , io)
 
 // Make sure uploads directory exists - modern approach
-const uploadsDir = path.join(process.cwd(), "backend", "uploads");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const uploadsDir = path.join(__dirname, "uploads");
 
 app.use(cors({
   origin: process.env.frontendURL,
