@@ -40,10 +40,7 @@ app.use(cors({
   credentials: true
 }));
 
-// Make uploads directory accessible
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(uploadsDir));
 
 app.set('trust proxy', 1); // important when behind HTTPS reverse proxy
 
