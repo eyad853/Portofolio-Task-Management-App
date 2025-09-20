@@ -59,7 +59,6 @@ const ColumnsModal = ({setColumns, isColumnsModalOpen, selectedColumn , setSelec
                 updatedFields
             );
                 setSelectedColumn(null)
-            console.log("Update successful:", response.data);
         } catch (error) {
             console.error("Update failed:", error);
         }
