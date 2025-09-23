@@ -470,7 +470,7 @@ const KanbanPage = ({isFriendsModalOpen, isSideBarOpen, darkMode, pages, setIsFr
       >
         {/* Make columns draggable */}
         <SortableContext items={columnIds} strategy={rectSortingStrategy}>
-          <div className={`w-full flex-1 grid grid-cols-1 md:grid-cols-[repeat(auto-fit,_305px)] gap-4 md:gap-10 auto-rows-[32rem] md:auto-rows-[37.6rem] mt-4 md:mt-5`}>
+          <div className={`w-full flex-1 grid grid-cols-1 md:grid-cols-[repeat(auto-fit,_minmax(300px,1fr))] gap-4 md:gap-10 auto-rows-[32rem] md:auto-rows-[37.6rem] mt-4 md:mt-5`}>
             {filteredColumns.length > 0 ? (
               filteredColumns.map((column) => (
                 <SortableColumn

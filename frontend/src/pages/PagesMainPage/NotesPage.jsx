@@ -319,7 +319,7 @@ const NotesPage = ({ pages, darkMode, isSideBarOpen, selectedPageId }) => {
                 strategy={rectSortingStrategy}
               >
                 {/* Responsive grid layout */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-4 sm:gap-6 lg:gap-10 items-start justify-center sm:justify-start">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap- lg:gap-10 items-start justify-center sm:justify-start">
                   {filteredNotes.map((note) => (
                     <SortableNote
                       key={note._id}
