@@ -64,7 +64,7 @@ const Signup = ({setTrigger}) => {
 
             if (!res.data.error) {
                 setTrigger(prev=>prev+1)
-                navigate("/home");
+                navigate("/");
             }
         } catch (error) {
             setError(error.response?.data?.message)

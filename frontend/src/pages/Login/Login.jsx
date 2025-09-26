@@ -45,7 +45,7 @@ const Login = ({setTrigger}) => {
             // If the login is successful (status 200), navigate to home
             if (response.status === 200) {
                 setTrigger(prev=>prev+1)
-                navigate('/home');
+                navigate('/');
             }
         } catch (error) {
                 setError(error?.response?.data?.message || "Login failed. Please try again.");

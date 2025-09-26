@@ -129,14 +129,14 @@ export const firstGoogleRoute = passport.authenticate("google" , {
 })
 
 export const secondGoogleRoute =  passport.authenticate('google', {
-    successRedirect: `${process.env.frontendURL}/home`, // Redirect if authentication succeeds
+    successRedirect: `${process.env.frontendURL}/`, // Redirect if authentication succeeds
     failureRedirect: `${process.env.frontendURL}/login`,    // Redirect if authentication fails
 })
 
 export const firstGithubRoute = passport.authenticate('github' ,  { scope: ['user:email'] })
 
 export const secondGithubRoute =  passport.authenticate('github', { 
-   successRedirect: `${process.env.frontendURL}/home`, // No spaces, just the URL
+   successRedirect: `${process.env.frontendURL}/`, // No spaces, just the URL
 failureRedirect: `${process.env.frontendURL}/login`
 }
 )
