@@ -12,9 +12,9 @@ const App = () => {
   return (
     <Router >
       <Routes>
-        <Route path='/' element={<Signup setTrigger={setTrigger}/>}/>
+        <Route path='/signup' element={<Signup setTrigger={setTrigger}/>}/>
         <Route path='/login' element={<Login setTrigger={setTrigger}/>}/>
-        <Route path='/home' element={<Home trigger={trigger}/>}/>
+        <Route path='/' element={<Home trigger={trigger}/>}/>
       </Routes>
     </Router>
   )

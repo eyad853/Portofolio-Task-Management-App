@@ -7,6 +7,7 @@ import axios from 'axios';
 import TodosModal from '../../components/Modals/TodosModal';
 import FriendsModal from '../../components/Modals/FriendsModal';
 import { io } from 'socket.io-client';
+import AuthModal from '../../components/Modals/AuthModal/AuthModal';
 
 const Home = ({trigger}) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(window.innerWidth >= 1024);
@@ -26,6 +27,8 @@ const Home = ({trigger}) => {
   const [user, setUser] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [selectedPageId, setSelectedPageId] = useState(null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
 
   const socket = io(import.meta.env.VITE_BACKEND_URL, {
     transports: ['websocket'],
@@ -94,6 +97,7 @@ const Home = ({trigger}) => {
         setDarkMode={setDarkMode}
         user={user}
         setSelectedPageId={setSelectedPageId}
+        setShowAuthModal={setShowAuthModal}
       />
 
       {/* Main Content Area */}
@@ -163,6 +167,7 @@ const Home = ({trigger}) => {
         selectedPageId={selectedPageId}
         setTasks={setTasks}
       />
+      <AuthModal showModal={showAuthModal} setShowModal={setShowAuthModal}/>
     </div>
   );
 };

@@ -48,7 +48,7 @@ const Login = ({setTrigger}) => {
                 navigate('/home');
             }
         } catch (error) {
-                setError(error.response.data.message || "Login failed. Please try again.");
+                setError(error?.response?.data?.message || "Login failed. Please try again.");
         }finally{
             setLoadings(false)
         }

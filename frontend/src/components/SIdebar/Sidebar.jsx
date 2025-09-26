@@ -29,7 +29,8 @@ const Sidebar = ({
     setDarkMode,
     user,
     setPages,
-    setSelectedPageId
+    setSelectedPageId,
+    setShowAuthModal
 }) => {
     const [avatar, setAvatar] = useState("")
     const [name, setName] = useState("")
@@ -213,11 +214,15 @@ const Sidebar = ({
                         {/* Settings */}
                         <div 
                             onClick={() => {
-                                setContent("Settings")
-                                setRoute("Settings")
-                                // Close sidebar on mobile
-                                if (window.innerWidth < 1024) {
-                                    setIsSideBarOpen(false)
+                                if(user){
+                                    setContent("Settings")
+                                    setRoute("Settings")
+                                    // Close sidebar on mobile
+                                    if (window.innerWidth < 1024) {
+                                        setIsSideBarOpen(false)
+                                    }
+                                }else{
+                                    setShowAuthModal(true)
                                 }
                             }}
                             className={`
@@ -248,7 +253,13 @@ const Sidebar = ({
                 {/* Create Page Button */}
                 <div className="mx-2 sm:mx-3 mt-2">
                     <div 
-                        onClick={() => setIsPagesOpen(true)}
+                        onClick={() => {
+                            if(user){
+                                setIsPagesOpen(true)
+                            }else{
+                                setShowAuthModal(true)
+                            }
+                        }}
                         className={`
                             w-full h-8 sm:h-10 flex items-center 
                             hover:${darkMode ? "bg-gray-950" : "bg-gray-300"} 
