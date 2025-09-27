@@ -49,7 +49,8 @@ const Calendar = ({ month, year, pages, darkMode, selectedPageId, setLoading }) 
   const calendarPage = pages.find(page => page._id === selectedPageId);
   
   const fetchEvents = async() => {
-    if (!calendarPage) return console.error("calendar page not found");
+    if (!calendarPage) return;
+    if(!user)return
 
     try {
       setLoading(true);

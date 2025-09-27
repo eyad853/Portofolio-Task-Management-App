@@ -23,6 +23,7 @@ const DashBoard = ({ darkMode, user }) => {
   const API_BASE_URL = import.meta.env.VITE_BACKEND_URL; // Adjust this based on your server's port
 
   const fetchData = async (endpoint, setDataState) => {
+    if(!user)return
     try {
       const response = await axios.get(`${API_BASE_URL}${endpoint}`, { withCredentials: true });
 
@@ -48,6 +49,7 @@ const DashBoard = ({ darkMode, user }) => {
   // --- Data Transformation Functions for Charts ---
 
   const getTodoPieChartData = () => {
+
     const completed = allTodos.filter(task => task.done === true).length;
     const inProgress = allTodos.filter(task => task.onProgress === true).length;
     const pending = allTodos.filter(task => !task.done && !task.onProgress).length;
@@ -62,6 +64,8 @@ const DashBoard = ({ darkMode, user }) => {
   };
 
   const getEventBarChartData = () => {
+
+
     const dailyCounts = {};
     allEvents.forEach(event => {
       if (event.date) {
@@ -122,6 +126,7 @@ const DashBoard = ({ darkMode, user }) => {
   };
 
   const fetchAllTheData = async () => {
+    if(!user)return
     setLoading(true)
     await fetchData('/getAllTodos', setAllTodos);
     await fetchData('/getAllEvents', setAllEvents);

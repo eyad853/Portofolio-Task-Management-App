@@ -62,11 +62,12 @@ const Home = ({trigger}) => {
         }
       })
       .catch(error => {
-        console.error('Error fetching user:', error);
+        setUser(null)
       });
   }, [trigger]);
 
   const fetchPages = async () => {
+    if(!user)return
     try {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getPages`, { withCredentials: true });
       if (res) {
