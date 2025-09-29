@@ -216,7 +216,7 @@ const TodoPage = ({
 
     // Render task table for desktop
     const renderTaskTable = (taskList, sectionName) => (
-        <div className='w-full flex-1 hidden lg:grid lg:grid-cols-[5%_20%_25%_20%_12.5%_12.5%_5%] auto-rows-[44px] hide-scrollbar overflow-y-scroll'>
+        <div className='w-full flex-1 hidden lg:grid lg:grid-cols-[5%_20%_35%_22.5%_12.5%_5%] auto-rows-[44px] hide-scrollbar overflow-y-scroll'>
             {/* Desktop Table Header */}
             <div className='flex justify-center items-center border-b border-r border-gray-300'>
                 <input type="checkbox" disabled />
@@ -236,12 +236,6 @@ const TodoPage = ({
             <div className="flex items-center justify-start border-b border-gray-300 border-r">
                 <div className={`ml-3 flex items-center gap-1 ${darkMode ? "text-white" : "text-gray-600"} font-semibold`}>
                     Estimation
-                </div>
-            </div>
-            <div className="flex items-center justify-start border-b border-gray-300 border-r">
-                <div className={`ml-1 flex items-center gap-1 ${darkMode ? "text-white" : "text-gray-600"} font-semibold`}>
-                    <MdPeopleAlt />
-                    People
                 </div>
             </div>
             <div className="flex items-center justify-start border-b border-gray-300 border-r">
@@ -280,19 +274,6 @@ const TodoPage = ({
                         <div className='font-semibold'>
                             {task.estimation || "N/A"}
                         </div>
-                    </div>
-                    <div className={`flex items-center justify-start transition-all hover:${darkMode ? "bg-gray-950" : "bg-gray-300"} duration-200 border-b border-r border-gray-300`}>
-                        {task.people?.length > 0 ? (
-                            <div className='w-full h-full flex items-center'>
-                                <div>
-                                    <img src={task.people.avatar} alt="" />
-                                </div>
-                            </div>
-                        ) : (
-                            <div className='w-full h-full flex justify-center items-center'>
-                                <PiEmptyBold />
-                            </div>
-                        )}
                     </div>
                     <div className="flex items-center justify-center border-b border-r border-gray-300">
                         <span
