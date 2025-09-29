@@ -35,9 +35,25 @@ const Home = ({trigger}) => {
     withCredentials: true
   });
 
-  socket.on('connect', () => {
-    console.log("user has been connected");
-  });
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    socket.on('connect_error', (error) => {
+      console.error('Connection error:', error);
+    });
+
+    socket.on('disconnect', (reason) => {
+      console.log('Disconnected from server:', reason);
+    });
+
+    return () => {
+      socket.off('connect');
+      socket.off('connect_error');
+      socket.off('disconnect');
+    };
+  }, []);
 
   // Handle window resize
   useEffect(() => {
@@ -80,7 +96,7 @@ const Home = ({trigger}) => {
 
   useEffect(() => {
     fetchPages();
-  }, [selectedPageId]);
+  }, [selectedPageId , user]);
 
   return (
     <div className='min-h-screen flex w-full overflow-hidden'>
