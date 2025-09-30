@@ -92,7 +92,6 @@ const Sidebar = ({
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
                 className={`
                     h-screen border-r fixed z-40
-                    overflow-y-auto
                     ${darkMode ? " bg-gray-900 border-gray-700 text-white" : "bg-neutral-200  border-gray-300"} 
                     transition-all duration-300 flex flex-col
                     w-80 lg:w-1/5
