@@ -50,7 +50,7 @@ const Calendar = ({ month, year, pages, darkMode, selectedPageId, setLoading }) 
   
   const fetchEvents = async() => {
     if (!calendarPage) return;
-    if(!user)return
+
 
     try {
       setLoading(true);
