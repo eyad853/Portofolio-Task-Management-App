@@ -99,7 +99,7 @@ const Home = ({trigger}) => {
   }, [selectedPageId , user]);
 
   return (
-    <div className='min-h-screen flex w-full overflow-hidden'>
+    <div className='min-h-screen flex w-full '>
       <Sidebar
         setIsPagesOpen={setIsPagesOpen}
         setRoute={setRoute}
